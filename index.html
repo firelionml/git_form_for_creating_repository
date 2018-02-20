@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Form to create Repo</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+		form {
+	    max-width: 365px;
+    	margin: 50px auto 0 auto;
+    	border: 1px solid #ced4da;
+    	border-radius: 10px;
+    	padding: 20px;
+		}
+		legend {
+			padding-left: 15px;
+		}
+		#site_name_div {
+			margin-top: 20px;
+		}
+		#github_logo {
+	    vertical-align: middle;
+	    display: inherit;
+	    margin-left: 10px;
+	    width: 25px;
+	    height: 25px;
+	    background-image: url(github-logo.svg);
+	    background-repeat: no-repeat;
+	    background-size: 100%;
+		}
+		#create {
+			vertical-align: middle;
+		}
+	</style>
+</head>
+<body>
+
+<div class="container">
+
+	<form action="action.php" method="POST">
+
+		<legend>Create your new repository!</legend>
+
+		<!-- Input site name -->
+		<div id="site_name_div" class="form-group">
+		  <label class="col control-label">Site name</label>  
+		  <div class="col inputGroupContainer">
+		  <div class="input-group">
+		  <input  name="git_name" id="repo_input" class="form-control" type="text">
+		    </div>
+		  </div>
+		</div>
+		
+		<!-- Submit button -->
+		<div class="form-group">
+		  <div class="col">
+		    <button type="submit" id="input_button" class="btn btn-warning"><span id="create">Create</span><span id="github_logo"></span></button>
+		  </div>
+		</div>
+
+	</form> <!-- form action.php -->
+
+</div> <!-- container -->
+	
+</body>
+</html>
