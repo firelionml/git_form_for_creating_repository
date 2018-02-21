@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Form to create Repo</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<style>
 		form {
 			max-width: 365px;
@@ -92,17 +93,17 @@
 			-ms-flex-positive: 1;
 			flex-grow: 1;
 			max-width: 100%;
-	    position: relative;
-	    width: 100%;
-	    min-height: 1px;
-	    padding-right: 15px;
-	    padding-left: 15px;
+			position: relative;
+			width: 100%;
+			min-height: 1px;
+			padding-right: 15px;
+			padding-left: 15px;
 		}
 		input {
-	    margin: 0;
-	    font-family: inherit;
-	    font-size: inherit;
-	    line-height: inherit;
+			margin: 0;
+			font-family: inherit;
+			font-size: inherit;
+			line-height: inherit;
 		}
 		.input-group {
 			position: relative;
@@ -128,8 +129,8 @@
 			z-index: 3;
 		}
 		label {
-	    display: inline-block;
-	    margin-bottom: .5rem;
+			display: inline-block;
+			margin-bottom: .5rem;
 		}
 		.form-control {
 			display: block;
@@ -145,11 +146,11 @@
 			transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 		}
 		.form-control:focus {
-	    color: #495057;
-	    background-color: #fff;
-	    border-color: #80bdff;
-	    outline: 0;
-	    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+			color: #495057;
+			background-color: #fff;
+			border-color: #80bdff;
+			outline: 0;
+			box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
 		}
 		button {
 			text-transform: none;
@@ -185,21 +186,21 @@
 			transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 		}
 		.btn:focus {
-	    outline: 0;
-	    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+			outline: 0;
+			box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
 		}
 		.btn-warning:hover {
-	    color: #212529;
-	    background-color: #e0a800;
-	    border-color: #d39e00;
+			color: #212529;
+			background-color: #e0a800;
+			border-color: #d39e00;
 		}
 		.btn-warning:focus {
-    	box-shadow: 0 0 0 0.2rem rgba(255,193,7,.5);
+			box-shadow: 0 0 0 0.2rem rgba(255,193,7,.5);
 		}
 		.btn-warning:not(:disabled):not(.disabled):active {
-	    color: #212529;
-	    background-color: #d39e00;
-	    border-color: #c69500;
+			color: #212529;
+			background-color: #d39e00;
+			border-color: #c69500;
 		}*/
 	</style>
 </head>
@@ -207,7 +208,7 @@
 
 <div class="container">
 
-	<form action="action.php" method="POST">
+	<form method="POST" id="form">
 
 		<legend>Create your new repository!</legend>
 
@@ -216,7 +217,7 @@
 			<label class="col">Site name</label>  
 			<div class="col">
 			<div class="input-group">
-			<input  name="git_name" id="repo_input" class="form-control" type="text">
+			<input  name="git_name" id="git_name" class="form-control" type="text" required>
 				</div>
 			</div>
 		</div>
@@ -231,6 +232,28 @@
 	</form> <!-- form action.php -->
 
 </div> <!-- container -->
+
+<script>
+	$(document).ready(function(){
+		$('#input_button').click(function(){ //устанавливаем событие отправки для формы с id=form
+			var form = $('#form');
+			var form_data = $(form).serialize(); //собераем все данные из формы
+			$.ajax({
+				type: "POST", //Метод отправки
+				url: "action.php", //путь до php фаила отправителя
+				data: form_data,
+				success: function() {
+					//код в этом блоке выполняется при успешной отправке сообщения
+					alert("Готово, ёпт!");
+				},
+				error: function() {
+					//код в этом блоке выполняется при неуспешной отправке сообщения
+					alert("Сначала введи название!");
+				}
+			});
+		});
+	});
+</script>
 	
 </body>
 </html>
