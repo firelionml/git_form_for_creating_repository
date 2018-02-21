@@ -1,1 +1,0 @@
-curl -u 'haseri:debalitrium121' https://api.github.com/user/repos -d '{"name":"test"}'

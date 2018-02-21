@@ -23,12 +23,17 @@
 <?
 
 $git_name = $_POST['git_name'];
-$user = 'haseri';
-$password = 'debalitrium121';
+$user = 'USER_NAME';
+$password = 'USER_PASSWORD';
+$token = 'OAuth_token';
+$create = 'curl -u ' . '\'' . $user . ':' . $password . '\'' . ' ' . 'https://api.github.com/user/repos -d \'{"name":"' . $git_name . '"}\'';
+// $create = 'curl -i -u ' . $user . ':' . $token . ' -H "Accept:application/vnd.github.jean-grey-preview+json" \ https://api.github.com/user';
 
 if(isset($_POST['git_name']) && !empty($_POST['git_name'])) {
-	$create = shell_exec('curl -u ' . '\'' . $user . ':' . $password . '\'' . ' ' . 'https://api.github.com/user/repos -d \'{"name":"' . $git_name . '"}\'');
+	$run = shell_exec($create);
+	echo $create;
+	echo '<br>';
+	echo $run;
 }
-echo $create;
 
 ?>
