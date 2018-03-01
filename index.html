@@ -4,22 +4,28 @@
 	<meta charset="UTF-8">
 	<title>Form to create Repo</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="animate.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<style>
 		form {
 			background: #ffffff;
-
 			max-width: 365px;
 			margin: 50px auto 0 auto;
 			border: 1px solid #ced4da;
 			border-radius: 10px;
 			padding: 20px;
+			transition: all 0.3s;
 
 			left: 50%;
 			margin-left: -174px;
 			position: absolute;
 			z-index: 1000;
+		}
+		.form_invisible {
 			display: none;
+		}
+		.form_visible {
+			display: block;
 		}
 		legend {
 			padding-left: 15px;
@@ -43,15 +49,60 @@
 		.form-group {
 			margin-bottom: 1rem;
 		}
-		.darkness {
+		#darkness {
 			position: absolute;
 			background: #000;
+			cursor: pointer;
 			opacity: .4;
 			top: 0;
 			width: 100%;
 			height: 100%;
 			z-index: 900;
+			transition: all 0.3s;
+		}
+		.darkness_invisible {
 			display: none;
+		}
+		.darkness_visible {
+			display: block;
+		}
+		@-webkit-keyframes fadeIn_changed {
+		  from {
+		    opacity: 0;
+		  }
+
+		  to {
+		    opacity: 0.4;
+		  }
+		}
+
+		@keyframes fadeIn_changed {
+		  from {
+		    opacity: 0;
+		  }
+
+		  to {
+		    opacity: 0.4;
+		  }
+		}
+
+		.fadeIn_changed {
+		  -webkit-animation-name: fadeIn_changed;
+		  animation-name: fadeIn_changed;
+		}
+
+		@-webkit-keyframes fadeInDown {
+		  from {
+		    opacity: 0;
+		    -webkit-transform: translate3d(0, -100%, 0);
+		    transform: translate3d(0, -100%, 0);
+		  }
+
+		  to {
+		    opacity: 0.4;
+		    -webkit-transform: translate3d(0, 0, 0);
+		    transform: translate3d(0, 0, 0);
+		  }
 		}
 	</style>
 </head>
@@ -60,7 +111,7 @@
 <div class="container">
 	<div class="row justify-content-center"><button id="btn" class="btn btn-primary">Click me!</button></div>
 
-	<form action="action.php" method="POST" id="form">
+	<form action="action.php" method="POST" id="form" class="animated form_invisible">
 
 		<legend>Create your new repository!</legend>
 
@@ -85,36 +136,37 @@
 
 </div> <!-- container -->
 
-<div class="darkness"></div>
+<div id="darkness" class="animated fadeIn_changed darkness_invisible"></div>
 
 <script>
-	// $(document).ready(function(){
-	// 	$('#input_button').click(function(){
-	// 		var form = $('#form');
-	// 		var form_data = $(form).serialize(); //собераем все данные из формы
-	// 		$.ajax({
-	// 			type: "POST",
-	// 			url: "action.php",
-	// 			data: form_data,
-	// 			success: function() {
-	// 				alert("Готово, ёпт!");
-	// 			},
-	// 			error: function() {
-	// 				alert("Сначала введи название!");
-	// 			}
-	// 		});
-	// 	});
-	// });
+	$(document).ready(function(){
+		$('#input_button').click(function(){
+			var form = $('#form');
+			var form_data = $(form).serialize(); //собераем все данные из формы
+			$.ajax({
+				type: "POST",
+				url: "action.php",
+				data: form_data,
+				success: function() {
+					alert("Готово!");
+				},
+				error: function() {
+					alert("Сначала введи название!");
+				}
+			});
+		});
+	});
 </script>
 
 <script>
 	$('#btn').click(function(){
-		$('form').css('display', 'block');
-		$('.darkness').css('display', 'block');
+		$('form').addClass('zoomIn form_visible').removeClass('bounceOut form_invisible');
+		$('#darkness').addClass('fadeIn_changed darkness_visible').removeClass('fadeOut darkness_invisible');
 	})
 
-	$('.darkness').click(function(){
-		
+	$('#darkness').click(function(){
+		$('form').addClass('bounceOut').removeClass('zoomIn form_visible');
+		$('#darkness').addClass('darkness_invisible').removeClass('fadeIn_changed darkness_visible');
 	})
 </script>
 	
