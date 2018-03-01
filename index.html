@@ -7,11 +7,19 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<style>
 		form {
+			background: #ffffff;
+
 			max-width: 365px;
 			margin: 50px auto 0 auto;
 			border: 1px solid #ced4da;
 			border-radius: 10px;
 			padding: 20px;
+
+			left: 50%;
+			margin-left: -174px;
+			position: absolute;
+			z-index: 1000;
+			display: none;
 		}
 		legend {
 			padding-left: 15px;
@@ -35,178 +43,22 @@
 		.form-group {
 			margin-bottom: 1rem;
 		}
-
-		/*bootstrap styles*/
-		
-		/*.container {
+		.darkness {
+			position: absolute;
+			background: #000;
+			opacity: .4;
+			top: 0;
 			width: 100%;
-			padding-right: 15px;
-			padding-left: 15px;
-			margin-right: auto;
-			margin-left: auto;
+			height: 100%;
+			z-index: 900;
+			display: none;
 		}
-		@media (min-width: 1200px) {
-			.container {
-				max-width: 1140px;
-			}
-		}
-		@media (min-width: 992px) {
-			.container {
-				max-width: 960px;
-			}
-		}
-		@media (min-width: 768px) {
-			.container {
-				max-width: 720px;
-			}
-		}
-		@media (min-width: 576px) {
-			.container {
-				max-width: 540px;
-			}
-		}
-		body {
-			font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-			margin: 0;
-			font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-			font-size: 1rem;
-			font-weight: 400;
-			line-height: 1.5;
-			color: #212529;
-			text-align: left;
-			background-color: #fff;
-		}
-		legend {
-			display: block;
-			width: 100%;
-			max-width: 100%;
-			margin-bottom: .5rem;
-			font-size: 1.5rem;
-			line-height: inherit;
-			color: inherit;
-			white-space: normal;
-		}
-		.col {
-			-ms-flex-preferred-size: 0;
-			flex-basis: 0;
-			-webkit-box-flex: 1;
-			-ms-flex-positive: 1;
-			flex-grow: 1;
-			max-width: 100%;
-			position: relative;
-			width: 100%;
-			min-height: 1px;
-			padding-right: 15px;
-			padding-left: 15px;
-		}
-		input {
-			margin: 0;
-			font-family: inherit;
-			font-size: inherit;
-			line-height: inherit;
-		}
-		.input-group {
-			position: relative;
-			display: -webkit-box;
-			display: -ms-flexbox;
-			display: flex;
-			-ms-flex-wrap: wrap;
-			flex-wrap: wrap;
-			-webkit-box-align: stretch;
-			-ms-flex-align: stretch;
-			align-items: stretch;
-			width: 100%;
-		}
-		.input-group>.form-control {
-			position: relative;
-			-webkit-box-flex: 1;
-			-ms-flex: 1 1 auto;
-			flex: 1 1 auto;
-			width: 1%;
-			margin-bottom: 0;
-		}
-		.input-group>.form-control:focus {
-			z-index: 3;
-		}
-		label {
-			display: inline-block;
-			margin-bottom: .5rem;
-		}
-		.form-control {
-			display: block;
-			width: 100%;
-			padding: .375rem .75rem;
-			font-size: 1rem;
-			line-height: 1.5;
-			color: #495057;
-			background-color: #fff;
-			background-clip: padding-box;
-			border: 1px solid #ced4da;
-			border-radius: .25rem;
-			transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-		}
-		.form-control:focus {
-			color: #495057;
-			background-color: #fff;
-			border-color: #80bdff;
-			outline: 0;
-			box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-		}
-		button {
-			text-transform: none;
-			overflow: visible;
-			margin: 0;
-			font-family: inherit;
-			font-size: inherit;
-			line-height: inherit;
-		}
-		.btn:not(:disabled):not(.disabled) {
-			cursor: pointer;
-		}
-		.btn-warning {
-			color: #212529;
-			background-color: #ffc107;
-			border-color: #ffc107;
-		}
-		.btn {
-			display: inline-block;
-			font-weight: 400;
-			text-align: center;
-			white-space: nowrap;
-			vertical-align: middle;
-			-webkit-user-select: none;
-			-moz-user-select: none;
-			-ms-user-select: none;
-			user-select: none;
-			border: 1px solid transparent;
-			padding: .375rem .75rem;
-			font-size: 1rem;
-			line-height: 1.5;
-			border-radius: .25rem;
-			transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-		}
-		.btn:focus {
-			outline: 0;
-			box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-		}
-		.btn-warning:hover {
-			color: #212529;
-			background-color: #e0a800;
-			border-color: #d39e00;
-		}
-		.btn-warning:focus {
-			box-shadow: 0 0 0 0.2rem rgba(255,193,7,.5);
-		}
-		.btn-warning:not(:disabled):not(.disabled):active {
-			color: #212529;
-			background-color: #d39e00;
-			border-color: #c69500;
-		}*/
 	</style>
 </head>
 <body>
 
 <div class="container">
+	<div class="row justify-content-center"><button id="btn" class="btn btn-primary">Click me!</button></div>
 
 	<form action="action.php" method="POST" id="form">
 
@@ -233,6 +85,8 @@
 
 </div> <!-- container -->
 
+<div class="darkness"></div>
+
 <script>
 	// $(document).ready(function(){
 	// 	$('#input_button').click(function(){
@@ -251,6 +105,17 @@
 	// 		});
 	// 	});
 	// });
+</script>
+
+<script>
+	$('#btn').click(function(){
+		$('form').css('display', 'block');
+		$('.darkness').css('display', 'block');
+	})
+
+	$('.darkness').click(function(){
+		
+	})
 </script>
 	
 </body>
